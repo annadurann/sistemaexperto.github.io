@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ data.titulo }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ data.bienvenida }}</h1>
+        <h2>Oferta educativa</h2>
+        
+        {% if data.numero_cursos > 0 %}
+            <ul>
+                {% for c in data.cursos %}
+                    <li>{{ c }}</li>
+                {% endfor %}
+            </ul>
+          
+            <a href="{{ url_for('informacion') }}" class="btn-ver-mas">Ver más</a>
+
+            
+        {% else %}
+            <h2>No existen cursos...</h2>
+        {% endif %}
+        
+        <h3>Lee atentamente cada pregunta</h3>
+        
+        <form method="POST" action="/resultados">
+            <div class="preguntas-container">
+                {% for pregunta in preguntas %}
+                    <div class="pregunta">
+                        <p><strong>{{ loop.index }}. {{ pregunta.texto }}</strong></p>
+                        <label for="respuesta_{{ loop.index }}_si">Sí</label>
+                        <input type="radio" id="respuesta_{{ loop.index }}_si" name="respuesta_{{ loop.index }}" value="Sí" required>
+                        <label for="respuesta_{{ loop.index }}_no">No</label>
+                        <input type="radio" id="respuesta_{{ loop.index }}_no" name="respuesta_{{ loop.index }}" value="No">
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Enviar respuestas</button>
+        </form>
+    </div>
+{% endblock %}

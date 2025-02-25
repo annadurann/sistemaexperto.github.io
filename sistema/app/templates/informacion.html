@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Educativa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/informacion.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Oferta Educativa</h1>
+        <p>Somos la segunda institución más fuerte en el estado, lo que representa el 9.74% de la matrícula de educación superior.</p>
+
+        {% for carrera in carreras %}
+        <div class="carrera">
+            <h2>{{ carrera.nombre }}</h2>
+            <p><strong>Descripción:</strong> {{ carrera.descripcion }}</p>
+            
+            <details>
+                <summary>Más información</summary>
+                <p><strong>Habilidades:</strong> {{ ", ".join(carrera.habilidades) }}</p>
+                <p><strong>Áreas de interés:</strong> {{ ", ".join(carrera.areas_interes) }}</p>
+                <p><strong>Salidas profesionales:</strong> {{ ", ".join(carrera.salidas_profesionales) }}</p>
+            </details>
+        </div>
+        {% endfor %}
+
+        <a href="{{ url_for('index') }}">
+            <button>Regresar</button>
+        </a>
+    </div>
+</body>
+</html>

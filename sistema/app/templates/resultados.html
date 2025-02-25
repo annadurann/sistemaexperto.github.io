@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - OrientaTec Zapopan</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">Resultados</h1>
+
+    <h2 class="mt-4">Carrera recomendada: {{ carrera_recomendada }}</h2>
+
+    <div class="mt-4">
+        <h3>Comparación de puntuaciones:</h3>
+        <ul class="list-group">
+            {% for carrera, puntuacion in resultados.items() %}
+                <li class="list-group-item">
+                    <strong>{{ carrera }}</strong>: {{ puntuacion }} puntos
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-custom">Volver</a>
+    
+    </div>
+</div>
+
+</body>
+</html>
